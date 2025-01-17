@@ -9,6 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import axios from 'axios';
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 function Create() {
   const [step, setStep] = useState(0);
@@ -41,7 +42,10 @@ function Create() {
       setLoading(false);
       router.replace('/dashboard');
 
-      console.log(result.data.result.resp);
+      
+      toast("Your course content is being ready, please refresh after few seconds");
+
+      // console.log(result.data.result.resp);
     } catch (error) {
       console.error('Error generating course outline:', error);
     }
