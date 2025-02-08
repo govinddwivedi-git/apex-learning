@@ -1,6 +1,7 @@
 import { UserButton } from '@clerk/nextjs'
 import React from 'react'
 import ShinyText from './ShinyText'
+import Image from 'next/image'
 
 function DashboardHeader() {
   return (
