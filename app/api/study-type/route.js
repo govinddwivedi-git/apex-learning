@@ -14,8 +14,8 @@ export async function POST(req) {
         const result = {
             notes: notes,
             flashcard: contentList?.filter(item => item.type == "flashcard"),
-            quiz: null,
-            qa: null,
+            quiz: contentList?.filter(item => item.type == "quiz"),
+            qa: contentList?.filter(item => item.type == "qa"),
         }
 
         return NextResponse.json(result);

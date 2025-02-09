@@ -2,7 +2,7 @@ import { inngest } from "./client";
 import { eq } from "drizzle-orm";
 import { db } from "@/configs/db";
 import { CHAPTER_NOTES_TABLE, STUDY_MATERIAL_TABLE, STUDY_TYPE_CONTENT_TABLE, USER_TABLE } from "@/configs/schema";
-import { generateNotesAIModel, GenerateStudyTypeContentAiModel } from "@/configs/AiModel";
+import { generateNotesAIModel, GenerateQuizAiModel, GenerateStudyTypeContentAiModel } from "@/configs/AiModel";
 
 
 export const helloWorld = inngest.createFunction(
@@ -62,7 +62,7 @@ export const GenerateNotes = inngest.createFunction(
      const Chapters = course?.courseLayout?.chapters;
      let index = 0;
      Chapters.forEach(async(chapter) => {
-      const PROMPT = `Generate exam material detail content for ech chapter, Make sure to include all topic in the content, make sure to give content in HTML format (Do not Add HTML, Head,Body,title tag), The chapters : ${JSON.stringify(chapter)}`
+      const PROMPT = `Generate exam material detailed content for ech chapter, Make sure to include all topic in the content, make sure to give content in HTML format (Do not Add HTML, Head,Body,title tag), The chapters : ${JSON.stringify(chapter)}. Make sure to provide answer to all the questions in content.`;
       const result = await generateNotesAIModel.sendMessage(PROMPT);
       const aiResp = result.response.text();
       await db.insert(CHAPTER_NOTES_TABLE).values({
@@ -97,14 +97,17 @@ export const GenerateStudyTypeContent = inngest.createFunction(
 
   async({event,step})=>{
     const {studyType, prompt, courseId, recordId} = event.data;
-    const FlashcardAiResult = await step.run('Generating Flashcard using AI', async()=>{
-      const result = await GenerateStudyTypeContentAiModel.sendMessage(prompt);
+    const AiResult = await step.run('Generating Flashcard using AI', async()=>{
+      const result = 
+      studyType == 'flashcard' ? 
+      await GenerateStudyTypeContentAiModel.sendMessage(prompt) : 
+      await GenerateQuizAiModel.sendMessage(prompt);
      const AIResult = JSON.parse(result.response.text());
      return AIResult;
     })
     const DbResult = await step.run('Save Result to DB', async()=>{
       const result = await db.update(STUDY_TYPE_CONTENT_TABLE).set({
-        content: FlashcardAiResult,
+        content: AiResult,
         status: 'Ready'
       }).where(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId));
 

@@ -39,9 +39,63 @@ function ViewNotes() {
       </div>
 
       <div className="mt-10 mb-20">
-        <div dangerouslySetInnerHTML={{__html: (notes[stepCount]?.notes)?.replace('```html',' ')}} />
+        <div 
+          className="notes-content"
+          dangerouslySetInnerHTML={{
+            __html: notes[stepCount]?.notes
+              ?.replace(/```html/g, '')
+              ?.replace(/```/g, '')
+          }} 
+        />
 
-          {notes?.length == stepCount && 
+        <style jsx global>{`
+          .notes-content {
+            color: inherit;
+            line-height: 1.6;
+          }
+          .notes-content h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem 0;
+            color: inherit;
+          }
+          .notes-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem 0;
+          }
+          .notes-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem 0;
+          }
+          .notes-content p {
+            margin: 0.75rem 0;
+            font-size: 1rem;
+          }
+          .notes-content pre {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+          }
+          .notes-content code {
+            font-family: monospace;
+          }
+          .notes-content ul, .notes-content ol {
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
+          }
+          .notes-content li {
+            margin: 0.5rem 0;
+          }
+          .notes-content strong {
+            font-weight: 600;
+          }
+        `}</style>
+
+        {notes?.length == stepCount && 
           <div className='flex flex-col items-center gap-10'>
             <h2 className="text-2xl font-medium mt-5">Notes Completed</h2>
             <Button className="mt-3" onClick={() => route.back()}>Go to Course Page</Button>
