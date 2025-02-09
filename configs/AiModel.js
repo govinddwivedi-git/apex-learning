@@ -18,6 +18,13 @@ const generationConfig = {
   maxOutputTokens: 8192,
   responseMimeType: "application/json",
 };
+const generationConfig2 = {
+  temperature: 1,
+  topP: 0.95,
+  topK: 40,
+  maxOutputTokens: 8192,
+  responseMimeType: "text/plain",
+};
 
 export const courseOutlineAIModel = model.startChat({
   generationConfig,
@@ -43,7 +50,7 @@ export const courseOutlineAIModel = model.startChat({
 
 
 export const generateNotesAIModel = model.startChat({
-  generationConfig,
+  generationConfig2,
   history: [
     {
       role: "user",
@@ -59,6 +66,27 @@ export const generateNotesAIModel = model.startChat({
     },
   ],
 });
+
+
+
+export const GenerateStudyTypeContentAiModel = model.startChat({
+  generationConfig,
+  history: [
+    {
+      role: "user",
+      parts: [
+        {text: "Generate the flashcard on topic: Flutter Fundamentals, User Interface (UI) Development, Basic App Navigation in JSON format with front back content, Maximum 15"},
+      ],
+    },
+    {
+      role: "model",
+      parts: [
+        {text: "```json\n[\n  {\n    \"front\": \"What is Flutter's UI built upon?\",\n    \"back\": \"Widgets. Everything in Flutter is a widget, from buttons to layouts.\"\n  },\n  {\n    \"front\": \"What is the difference between StatelessWidget and StatefulWidget?\",\n    \"back\": \"StatelessWidget: Immutable. Does not change its state. StatefulWidget: Dynamic. Can change its state during runtime.\"\n  },\n  {\n    \"front\": \"What does 'BuildContext' provide?\",\n    \"back\": \"Access to the location of a Widget in the Widget tree. Provides information about the current build process.\"\n  },\n  {\n    \"front\": \"What is the purpose of the 'pubspec.yaml' file?\",\n    \"back\": \"It is the configuration file for your Flutter project, containing dependencies, assets, and project metadata.\"\n  },\n  {\n    \"front\": \"What is the 'Column' widget used for?\",\n    \"back\": \"Arranging widgets vertically, one below the other.\"\n  },\n  {\n    \"front\": \"What is the 'Row' widget used for?\",\n    \"back\": \"Arranging widgets horizontally, side by side.\"\n  },\n  {\n    \"front\": \"How do you add padding around a widget?\",\n    \"back\": \"Use the 'Padding' widget.  Specify 'padding: EdgeInsets.all(value)' or similar.\"\n  },\n  {\n    \"front\": \"How do you center a widget?\",\n    \"back\": \"Use the 'Center' widget. Wrap the widget you want to center within a 'Center' widget.\"\n  },\n  {\n    \"front\": \"What is the purpose of the 'Scaffold' widget?\",\n    \"back\": \"Provides the basic visual structure for a Material Design app, including an AppBar, Body, FloatingActionButton, etc.\"\n  },\n  {\n    \"front\": \"How do you navigate to a new screen in Flutter?\",\n    \"back\": \"Using the 'Navigator' class. `Navigator.push(context, MaterialPageRoute(builder: (context) => NewScreen()));`\"\n  },\n  {\n    \"front\": \"What is a named route?\",\n    \"back\": \"A route identified by a string name.  Useful for complex navigation schemes. Defined in `routes:` in `MaterialApp`.\"\n  },\n  {\n    \"front\": \"What does 'Navigator.pop(context)' do?\",\n    \"back\": \"Removes the current route from the navigation stack and returns to the previous screen.\"\n  },\n  {\n    \"front\": \"How to handle user tap events?\",\n    \"back\": \"Wrap widget with `GestureDetector` or `InkWell`. Use `onTap` property.\"\n  },\n  {\n    \"front\": \"What is the 'mainAxisAlignment' property in Row/Column for?\",\n    \"back\": \"Controls how the children are placed along the main axis (horizontally for Row, vertically for Column).\"\n  },\n  {\n    \"front\": \"What is the 'crossAxisAlignment' property in Row/Column for?\",\n    \"back\": \"Controls how the children are aligned in cross axis (vertically for Row, horizontally for Column).\"\n  }\n]\n```"},
+      ],
+    },
+  ],
+});
+
 
 // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
 // console.log(result.response.text());

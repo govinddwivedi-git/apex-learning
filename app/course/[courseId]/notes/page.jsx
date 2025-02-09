@@ -38,8 +38,8 @@ function ViewNotes() {
         <Button variant='outline' size="sm" onClick={() => setStepCount(stepCount + 1)}>Next</Button>
       </div>
 
-      <div className="mt-10">
-        <div dangerouslySetInnerHTML={{__html: notes[stepCount]?.notes}} />
+      <div className="mt-10 mb-20">
+        <div dangerouslySetInnerHTML={{__html: (notes[stepCount]?.notes)?.replace('```html',' ')}} />
 
           {notes?.length == stepCount && 
           <div className='flex flex-col items-center gap-10'>
