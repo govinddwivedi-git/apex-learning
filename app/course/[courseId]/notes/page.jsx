@@ -33,7 +33,7 @@ function ViewNotes() {
       <div className="flex gap-5 items-center">
         {stepCount != 0 && <Button variant='outline' size="sm" onClick={() => setStepCount(stepCount - 1)}>Previous</Button>}
         {notes?.map((item, index) => (
-          <div className={`w-full h-2 rounded-full ${index < stepCount ? 'bg-primary' : 'bg-gray-200'}`} key={index}></div>
+          <div className={`w-full h-2 rounded-full ${index <= stepCount ? 'bg-primary' : 'bg-gray-200'}`} key={index}></div>
         ))}
         <Button variant='outline' size="sm" onClick={() => setStepCount(stepCount + 1)}>Next</Button>
       </div>
@@ -63,18 +63,22 @@ function ViewNotes() {
             font-size: 1.5rem;
             font-weight: 600;
             margin: 1.25rem 0 0.75rem 0;
+            color: inherit;
           }
           .notes-content h4 {
             font-size: 1.25rem;
             font-weight: 600;
             margin: 1rem 0 0.5rem 0;
+            color: inherit;
           }
-          .notes-content p {
+          .notes-content p, .notes-content li {
             margin: 0.75rem 0;
             font-size: 1rem;
+            color: inherit;
           }
           .notes-content pre {
-            background: #f5f5f5;
+            background: var(--code-bg, #1a1a1a);
+            color: var(--code-color, #fff);
             padding: 1rem;
             border-radius: 0.5rem;
             margin: 1rem 0;
@@ -82,22 +86,25 @@ function ViewNotes() {
           }
           .notes-content code {
             font-family: monospace;
+            color: inherit;
           }
           .notes-content ul, .notes-content ol {
             margin: 0.75rem 0;
             padding-left: 1.5rem;
+            color: inherit;
           }
           .notes-content li {
             margin: 0.5rem 0;
           }
           .notes-content strong {
             font-weight: 600;
+            color: inherit;
           }
         `}</style>
 
         {notes?.length == stepCount && 
           <div className='flex flex-col items-center gap-10'>
-            <h2 className="text-2xl font-medium mt-5">Notes Completed</h2>
+            <h2 className="text-2xl font-medium mt-5">Notes Completed. Well Done ✌️✌️</h2>
             <Button className="mt-3" onClick={() => route.back()}>Go to Course Page</Button>
           </div>}
 

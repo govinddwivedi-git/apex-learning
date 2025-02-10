@@ -70,7 +70,7 @@ function Create() {
           <Button onClick={() => setStep(step + 1)}>Next</Button>
         ) : (
           <Button onClick={GenerateCourseOutline}  disabled={loading}>
-            {loading ? <Loader className="animate-spin"/> : 'Generate'} 
+            {loading ? <Loader className="animate-spin text-white"/> : 'Generate'} 
           </Button>
         )}
       </div>

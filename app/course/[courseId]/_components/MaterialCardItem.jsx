@@ -35,7 +35,7 @@ function MaterialCardItem({ item, studyTypeContent, course, refreshData }) {
   return (
     
       <div
-        className={`border rounded-lg shadow-md p-5 flex flex-col items-center ${
+        className={`border border-stone-50/30 rounded-lg p-5 flex flex-col items-center ${
           studyTypeContent?.[item.type]?.length == 0 && "grayscale"
         }`}
       >
@@ -62,7 +62,7 @@ function MaterialCardItem({ item, studyTypeContent, course, refreshData }) {
           </Button>
         ) : (
           <Link href={"/course/" + course?.courseId + item.path}>
-          <Button className="mt-3 w-full" variant="outline">
+          <Button className="mt-3 w-full text-white">
             View
           </Button>
           </Link>

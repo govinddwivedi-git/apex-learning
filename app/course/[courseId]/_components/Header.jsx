@@ -8,7 +8,7 @@ function Header() {
   const router = useRouter();
   
   return (
-    <div className="p-5 shadow-md flex items-center">
+    <div className="p-5 shadow-md border-stone-50/30 flex items-center">
       <div className="flex-1 flex justify-between">
         <div 
           className="flex gap-2 items-center cursor-pointer" 
@@ -17,9 +17,9 @@ function Header() {
           <Image src={"/logo.svg"} alt="logo" width={30} height={30} />
           <h2 className="font-bold text-xl">Apex Learning</h2>
         </div>
-        <p className="text-xl font-bold text-pink-800">
+        {/* <p className="text-xl font-bold text-pink-800">
           Apex Learning : Your AI Companion for Smarter Study.
-        </p>
+        </p> */}
       <UserButton />
       </div>
     </div>

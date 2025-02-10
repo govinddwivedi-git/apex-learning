@@ -28,13 +28,13 @@ function CourseList() {
         <h2 className='font-bold text-2xl flex items-center justify-between'>Your Previous Created Study Material
         <Button variant='outline'
         onClick={GetCourseList}
-         className="border-primary text-primary"><RefreshCw/>Refresh</Button></h2>
+         className="border-stone-50/30 text-white bg-slate-600"><RefreshCw/>Refresh</Button></h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-3'>
             {loading == false ? CourseList?.map((course, index) => (
                 <CourseCardItem course = {course} key={index}/>
             )) :
             [1,2,3,4,5,6].map((item,index) => (
-                <div key={index} className='h-56 w-full bg-slate-200 rounded-lg animate-pulse'>
+                <div key={index} className='h-56 w-full bg-slate-700 rounded-lg animate-pulse'>
 
                 </div>
             ))
