@@ -105,7 +105,7 @@ function ViewNotes() {
         {notes?.length == stepCount && 
           <div className='flex flex-col items-center gap-10'>
             <h2 className="text-2xl font-medium mt-5">Notes Completed. Well Done ✌️✌️</h2>
-            <Button className="mt-3" onClick={() => route.back()}>Go to Course Page</Button>
+            <Button className="mt-3 text-white" onClick={() => route.back()}>Go to Course Page</Button>
           </div>}
 
       </div>

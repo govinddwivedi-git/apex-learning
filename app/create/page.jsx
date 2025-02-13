@@ -67,9 +67,9 @@ function Create() {
       <div className="flex justify-between w-full mt-32">
         {step != 0 ? <Button variant="outline" onClick={() => setStep(step - 1)}>Previous</Button> : <div></div>}
         {step == 0 ? (
-          <Button onClick={() => setStep(step + 1)}>Next</Button>
+          <Button className='text-white' onClick={() => setStep(step + 1)}>Next</Button>
         ) : (
-          <Button onClick={GenerateCourseOutline}  disabled={loading}>
+          <Button onClick={GenerateCourseOutline}  disabled={loading} className='text-white'>
             {loading ? <Loader className="animate-spin text-white"/> : 'Generate'} 
           </Button>
         )}

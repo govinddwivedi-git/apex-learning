@@ -1,15 +1,17 @@
 "use client"
 import { useUser } from '@clerk/nextjs';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import CourseCardItem from './CourseCardItem';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
+import { CourseCountContext } from '@/app/_context/CourseCountContext';
 
 function CourseList() {
     const {user} = useUser();
     const [CourseList, setCourseList] = useState([])
     const [loading, setLoading] = useState(false);
+    const {totalCourse, setTotalCourse} = useContext(CourseCountContext)
     useEffect(() => {
         user&&GetCourseList();
     }, [user]);
@@ -22,6 +24,7 @@ function CourseList() {
         console.log(result);
         setCourseList(result.data.result);
         setLoading(false);
+        setTotalCourse(result.data.result?.length);
     }
   return (
     <div className='mt-10'>

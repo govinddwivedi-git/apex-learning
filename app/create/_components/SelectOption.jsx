@@ -33,7 +33,7 @@ function SelectOption({ selectedStudyType }) {
         </h2>
         <div className='grid grid-col-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-5'>
             {Options.map((option, index) => (
-                <div key={index} className={`p-4 flex flex-col items-center justify-center border rounded-xl hover:border-primary cursor-pointer ${option?.name === selectedOption&&'border-primary'}`} onClick={() => {setSelectedOption(option.name);
+                 <div key={index} className={`p-4 flex flex-col items-center justify-center border rounded-xl hover:border-primary cursor-pointer ${option?.name === selectedOption ? 'border-primary' : 'border-slate-600'}`} onClick={() => {setSelectedOption(option.name);
                     selectedStudyType(option.name)}}
                 >
                     <Image src={option.icon} alt={option.name} width={50} height={50}/>
