@@ -60,8 +60,7 @@ export const GenerateNotes = inngest.createFunction(
     // Generate Notes for each chapter
     const notesResult = await step.run('Generate Chapter Notes', async()=>{
      const Chapters = course?.courseLayout?.chapters;
-     let index = 0;
-     Chapters.forEach(async(chapter) => {
+     await Promise.all(Chapters.map(async(chapter, index) => {
       const PROMPT = `Generate exam material detailed content for ech chapter, Make sure to include all topic in the content, make sure to give content in HTML format (Do not Add HTML, Head,Body,title tag), The chapters : ${JSON.stringify(chapter)}. Make sure to provide answer to all the questions in content.`;
       const result = await generateNotesAIModel.sendMessage(PROMPT);
       const aiResp = result.response.text();
@@ -69,24 +68,20 @@ export const GenerateNotes = inngest.createFunction(
         chapterId: index,
         courseId: course?.courseId,
         notes: aiResp
-      })
-     index = index + 1;
-     
-    })
-    return 'Completed';
+      });
+     }));
+     return 'Completed';
+    });
 
-    })
-
-    // Update the status of the course
+    // Update the status only after all chapters are processed
     const updateCourseStatusResult = await step.run('Update Course Status to ready', async() => {
       const result = await db.update(STUDY_MATERIAL_TABLE)
       .set({
         status: 'Ready'
       })
-      .where(eq(STUDY_MATERIAL_TABLE.courseId, course?.courseId))
+      .where(eq(STUDY_MATERIAL_TABLE.courseId, course?.courseId));
       return 'Success';
-    })
-
+    });
   }
 );
 

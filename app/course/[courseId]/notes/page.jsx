@@ -50,31 +50,27 @@ function ViewNotes() {
 
         <style jsx global>{`
           .notes-content {
-            color: inherit;
             line-height: 1.6;
           }
           .notes-content h2 {
             font-size: 2rem;
             font-weight: 600;
             margin: 1.5rem 0 1rem 0;
-            color: inherit;
           }
           .notes-content h3 {
             font-size: 1.5rem;
             font-weight: 600;
             margin: 1.25rem 0 0.75rem 0;
-            color: inherit;
           }
           .notes-content h4 {
             font-size: 1.25rem;
             font-weight: 600;
             margin: 1rem 0 0.5rem 0;
-            color: inherit;
           }
-          .notes-content p, .notes-content li {
+          .notes-content p {
             margin: 0.75rem 0;
             font-size: 1rem;
-            color: inherit;
+            color: rgb(150 160 160); /* text-gray-300 equivalent */
           }
           .notes-content pre {
             background: var(--code-bg, #1a1a1a);
@@ -86,19 +82,16 @@ function ViewNotes() {
           }
           .notes-content code {
             font-family: monospace;
-            color: inherit;
           }
           .notes-content ul, .notes-content ol {
             margin: 0.75rem 0;
             padding-left: 1.5rem;
-            color: inherit;
           }
           .notes-content li {
             margin: 0.5rem 0;
           }
           .notes-content strong {
             font-weight: 600;
-            color: inherit;
           }
         `}</style>
 
