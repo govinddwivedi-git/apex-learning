@@ -48,13 +48,13 @@ const OnPaymentManage = async() => {
   }
 
   return (
-    <div className='flex items-center justify-center gap-20'>
-      <SpotlightCard className='p-8 bg-white-800 border border-slate-600 rounded-2xl shadow-lg'>
-        <h1 className='text-3xl font-bold text-center mb-8'>Free</h1>
+    <div className='flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20 p-4 md:p-0'>
+      <SpotlightCard className='w-full md:w-auto p-4 md:p-8 bg-white-800 border border-slate-600 rounded-2xl shadow-lg'>
+        <h1 className='text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8'>Free</h1>
 
-        <div className='grid gap-6'>
-          <div className='space-y-4'>
-            <h2 className='text-xl font-semibold'>Free Offerigs:</h2>
+        <div className='grid gap-4 md:gap-6'>
+          <div className='space-y-3 md:space-y-4'>
+            <h2 className='text-lg md:text-xl font-semibold'>Free Offerigs:</h2>
             <ul className='space-y-3'>
               <li className='flex items-center gap-2'>
                 <MoveRight className='text-green-500' size={20} />
@@ -76,9 +76,9 @@ const OnPaymentManage = async() => {
             </ul>
           </div>
 
-          <div className='border-t pt-6'>
-            <div className='text-center space-y-4'>
-              <div className='text-4xl font-bold'>$0<span className='text-lg text-pink-300'>/month</span></div>
+          <div className='border-t pt-4 md:pt-6'>
+            <div className='text-center space-y-3 md:space-y-4'>
+              <div className='text-3xl md:text-4xl font-bold'>$0<span className='text-base md:text-lg text-pink-300'>/month</span></div>
               <h2 
                 className='w-full py-3 px-6 bg-pink-600 text-white rounded-lg font-semibold'
               >
@@ -88,8 +88,8 @@ const OnPaymentManage = async() => {
           </div>
         </div>
       </SpotlightCard>
-      <SpotlightCard className='p-8 bg-purple-800 rounded-2xl shadow-lg'>
-        <h1 className='text-3xl font-bold text-center mb-8'>Upgrade to Premium</h1>
+      <SpotlightCard className='w-full md:w-auto p-4 md:p-8 bg-purple-800 rounded-2xl shadow-lg'>
+        <h1 className='text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8'>Upgrade to Premium</h1>
 
         <div className='grid gap-6'>
           <div className='space-y-4'>
