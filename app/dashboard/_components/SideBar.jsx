@@ -38,16 +38,25 @@ function SideBar() {
       </div>
 
       <div className="mt-10">
-        <Link href={'/create'}><Button className="w-full text-white">+ Create  New</Button></Link> 
+        {(5-totalCourse) > 0 ? (
+          <Link href={'/create'}>
+            <Button className="w-full text-white">+ Create New</Button>
+          </Link>
+        ) : (
+          <Link href={'/dashboard/upgrade'}>
+            <Button className="w-full text-white">Upgrade to Create</Button>
+          </Link>
+        )}
       </div>
 
       <div className="mt-5">
         {MenuList.map((menu, index) => (
-          <div key={index} 
-          className={`flex gap-2 items-center p-3 hover:bg-stone-50/30 rounded-lg cursor-pointer mt-3 ${path === menu.path&&'bg-stone-50/30'}`}>
-            <menu.icon  />
-            <h2>{menu.name}</h2>
-          </div>
+          <Link href={menu.path} key={index}>
+            <div className={`flex gap-2 items-center p-3 hover:bg-stone-50/30 rounded-lg cursor-pointer mt-3 ${path === menu.path&&'bg-stone-50/30'}`}>
+              <menu.icon  />
+              <h2>{menu.name}</h2>
+            </div>
+          </Link>
         ))}
       </div>
 
