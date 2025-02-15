@@ -27,9 +27,11 @@ Apex Learning is an innovative AI-powered learning platform that helps students 
 - Clerk Authentication
 - Google's Generative AI (Gemini)
 - Stripe Payment Integration
+- Drizzle ORM
 - NeonDB (PostgreSQL)
 - Tailwind CSS
 - Radix UI Components
+- Shadcn UI Components
 - Inngest for backend workflows
 
 ## Getting Started
