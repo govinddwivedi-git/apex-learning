@@ -210,7 +210,7 @@ export default function Home() {
           </div>
 
           {/* Study Methods Section */}
-          <div className="w-[90%] mx-auto">
+          <div className="w-[90%] mx-auto mr-40">
             <div className="flex items-center gap-3 mb-8 justify-center">
               <div className="w-1 h-8 bg-pink-500 rounded-full" />
               <h3 className="text-2xl font-semibold text-white">Choose Study Method</h3>
