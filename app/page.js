@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import RotatingText from "@/components/ui/RotatingText";
 import DarkVeil from "@/components/ui/DarkVeil";
+import CardSwap, { Card } from "@/components/ui/CardSwap";
+import ShinyText from "./dashboard/_components/ShinyText";
 
 export default function Home() {
   return (
@@ -61,7 +63,13 @@ export default function Home() {
               href="/dashboard"
               className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all duration-300"
             >
-              Dashboard
+  
+<ShinyText 
+  text="Dashboard" 
+  disabled={false} 
+  speed={3} 
+  className='custom-class' 
+/>
             </Link>
             <UserButton afterSignOutUrl="/" />
           </div>
@@ -168,100 +176,125 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-10">
-            {/* Left side - Categories */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-purple-500 rounded-full" />
-                <h3 className="text-xl font-semibold text-white">Select Your Category</h3>
-              </div>
-              <div className="space-y-3">
-                {Options.map((option, index) => (
-                  <SpotlightCard
-                    key={index}
-                    className="group p-5 border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Image
-                          src={option.icon}
-                          alt={option.name}
-                          width={28}
-                          height={28}
-                        />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-medium text-white">{option.name}</h4>
-                        <p className="text-sm text-gray-500">
-                          AI-powered {option.name.toLowerCase()} prep
-                        </p>
-                      </div>
-                    </div>
-                    <svg className="w-5 h-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </SpotlightCard>
-                ))}
-              </div>
+          {/* Categories Section */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="flex items-center gap-3 mb-6 justify-center">
+              <div className="w-1 h-8 bg-purple-500 rounded-full" />
+              <h3 className="text-2xl font-semibold text-white">Select Your Category</h3>
             </div>
-
-            {/* Right side - Study Methods */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-pink-500 rounded-full" />
-                <h3 className="text-xl font-semibold text-white">Choose Study Method</h3>
-              </div>
-              
-              <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                {MaterialList.map((material, index) => (
-                  <SpotlightCard 
-                    key={index}
-                    className="group p-5 border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {Options.map((option, index) => (
+                <SpotlightCard
+                  key={index}
+                  className="group p-5 border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Image
-                        src={material.icon}
-                        alt={material.name}
-                        width={26}
-                        height={26}
+                        src={option.icon}
+                        alt={option.name}
+                        width={28}
+                        height={28}
                       />
                     </div>
-                    <h4 className="text-lg font-medium text-white mb-1">{material.name}</h4>
-                    <p className="text-sm text-gray-500">{material.desc}</p>
-                  </SpotlightCard>
-                ))}
-              </div>
-
-              <SpotlightCard className="p-6 border border-white/10">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-medium text-white">{option.name}</h4>
+                      <p className="text-xs text-gray-500">
+                        AI-powered prep
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Our <span className="text-white font-medium">AI-powered app</span> generates personalized content tailored to your learning needs—from summaries and notes to question sets. Study smarter, not harder.
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+          {/* Study Methods Section */}
+          <div className="w-[90%] mx-auto">
+            <div className="flex items-center gap-3 mb-8 justify-center">
+              <div className="w-1 h-8 bg-pink-500 rounded-full" />
+              <h3 className="text-2xl font-semibold text-white">Choose Study Method</h3>
+            </div>
+            
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              {/* Left side - Text content */}
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Study materials have never been this smart
+                  </h4>
+                  <p className="text-lg text-gray-400 leading-relaxed">
+                    Just pick a method and let our AI do the rest!
                   </p>
                 </div>
-              </SpotlightCard>
+
+                <SpotlightCard className="p-6 border border-white/10">
+                  <div className="flex gap-4 items-start">
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-400 leading-relaxed">
+                      Our <span className="text-white font-medium">AI-powered app</span> generates personalized content tailored to your learning needs—from summaries and notes to question sets. Study smarter, not harder.
+                    </p>
+                  </div>
+                </SpotlightCard>
+
+                {/* <Link
+                  href="/create"
+                  className="group inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-xl shadow-white/10"
+                >
+                  Start Creating Now
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link> */}
+              </div>
+
+              {/* Right side - Card Stack */}
+              <div style={{ height: '500px', position: 'relative' }}>
+                <CardSwap
+                  cardDistance={60}
+                  verticalDistance={70}
+                  delay={5000}
+                  pauseOnHover={false}
+                >
+                  {MaterialList.map((material) => (
+                    <Card key={material.type}>
+                      <div className="flex flex-col items-center text-center">
+                        <div className="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center mb-6">
+                          <Image
+                            src={material.icon}
+                            alt={material.name}
+                            width={32}
+                            height={32}
+                          />
+                        </div>
+                        <h4 className="text-2xl font-medium text-blue-600 mb-2">{material.name}</h4>
+                        <p className="text-base text-gray-400">{material.desc}</p>
+                      </div>
+                    </Card>
+                  ))}
+                </CardSwap>
+              </div>
             </div>
           </div>
 
           {/* CTA */}
-          
           <div className="mt-20 text-center">
-            <div className="inline-flex flex-col items-center gap-6 p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm">
-              <h3 className="text-2xl md:text-3xl font-bold text-white">Ready to Transform Your Learning?</h3>
+            <div className="inline-flex flex-col items-center gap-6 p-10 rounded-3xl border border-white/10 bg-cyan-800 backdrop-blur-sm">
+              <h3 className="text-2xl md:text-3xl font-bold text-red-">Ready to Transform Your Learning?</h3>
               <Link
-                href="/create"
+                href="/dashboard"
                 className="group inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-xl shadow-white/10"
               >
-                Start Creating Now
+                Get Started Free
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </Link>
-              <p className="text-sm text-gray-500">No credit card required • Free to start</p>
+              <p className="text-sm text-yellow-500">No credit card required • Free to start</p>
             </div>
           </div>
         </section>
