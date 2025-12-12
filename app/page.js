@@ -4,10 +4,17 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 import Link from "next/link";
 import Image from "next/image";
 import RotatingText from "@/components/ui/RotatingText";
+import LightPillar from "@/components/ui/LightPillar";
+import DarkVeil from "@/components/ui/DarkVeil";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      {/* Background Layer */}
+      <div className="absolute inset-0 w-full h-full -z-10">
+        <DarkVeil hueShift={27}/>
+      </div>
+
       <nav className="w-full z-50 mt-5">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div>
@@ -19,8 +26,11 @@ export default function Home() {
               height={45}
               className="rounded-xl shadow-lg group-hover:scale-105 transition-transform"
             />
-            <span className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            <span className="text-3xl font-bold dark:bg-gradient-to-r dark:from-white dark:to-gray-400 dark:bg-clip-text dark:text-transparent ">
               Apex Learning
+              <span className="text-xl text-white font-bold bg-yellow-600 px-4 py-1 rounded-full">
+                ai
+              </span>
             </span>
           </Link>
           <RotatingText
@@ -52,7 +62,7 @@ export default function Home() {
       <main className="container mx-auto px-4">
         <section className="py-10">
           <SpotlightCard className="text-center p-16 border border-neutral-800 mt-5">
-            <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
+            <h1 className="text-6xl font-bold mb-6 text-white">
               Welcome to Apex Learning
             </h1>
             <p className="text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
@@ -60,7 +70,7 @@ export default function Home() {
             </p>
             <Link
               href="/dashboard"
-              className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white px-10 py-4 rounded-full font-medium transition-all hover:scale-105"
+              className="bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-medium transition-all hover:scale-105"
             >
               Get Started
             </Link>
@@ -73,7 +83,7 @@ export default function Home() {
               key={index}
               className="p-8 border border-neutral-800 hover:border-neutral-700 transition-all hover:scale-105"
             >
-              <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
+              <h3 className="text-2xl font-semibold mb-4 text-white">
                 {feature.title}
               </h3>
               <p className="text-gray-400 text-lg">{feature.description}</p>
@@ -83,7 +93,7 @@ export default function Home() {
 
         {/* New Learning Flow Section */}
         <section className="py-8">
-          <h2 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-4 text-white">
             Create Your Learning Path
           </h2>
           <p className="text-gray-400 text-center mb-8 text-xl">
@@ -109,7 +119,7 @@ export default function Home() {
                     className="rounded-lg"
                   />
                   <div>
-                    <h4 className="text-lg font-medium bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                    <h4 className="text-lg font-medium text-white">
                       {option.name}
                     </h4>
                     <p className="text-sm text-gray-400">
@@ -135,7 +145,7 @@ export default function Home() {
                         width={32}
                         height={32}
                       />
-                      <h4 className="text-lg font-medium bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+                      <h4 className="text-lg font-medium text-white">
                         {material.name}
                       </h4>
                     </div>
@@ -167,7 +177,7 @@ export default function Home() {
           <div className="mt-12 text-center">
             <Link
               href="/create"
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white px-8 py-3 rounded-full font-medium transition-all hover:scale-105"
+              className="inline-flex items-center space-x-2 bg-white hover:bg-gray-200 text-black px-8 py-3 rounded-full font-medium transition-all hover:scale-105"
             >
               <span>Start Creating</span>
               <svg
