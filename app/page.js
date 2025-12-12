@@ -236,24 +236,14 @@ export default function Home() {
                       </svg>
                     </div>
                     <p className="text-gray-400 leading-relaxed">
-                      Our <span className="text-white font-medium">AI-powered app</span> generates personalized content tailored to your learning needs—from summaries and notes to question sets. Study smarter, not harder.
+                      Our <span className="text-white font-medium">AI-powered app</span> generates personalized content tailored to your learning needs-from summaries and notes to question sets. Study smarter, not harder.
                     </p>
                   </div>
                 </SpotlightCard>
-
-                {/* <Link
-                  href="/create"
-                  className="group inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-xl shadow-white/10"
-                >
-                  Start Creating Now
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </Link> */}
               </div>
 
-              {/* Right side - Card Stack */}
-              <div style={{ height: '500px', position: 'relative' }}>
+              {/* Right side - Card Stack (Desktop Only) */}
+              <div className="hidden lg:block" style={{ height: '500px', position: 'relative' }}>
                 <CardSwap
                   cardDistance={60}
                   verticalDistance={70}
@@ -278,6 +268,29 @@ export default function Home() {
                   ))}
                 </CardSwap>
               </div>
+            </div>
+
+            {/* Mobile Study Methods Grid */}
+            <div className="lg:hidden mt-8 grid grid-cols-2 gap-4">
+              {MaterialList.map((material) => (
+                <SpotlightCard
+                  key={material.type}
+                  className="group p-5 border border-white/10 hover:border-white/20 transition-all duration-300"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Image
+                        src={material.icon}
+                        alt={material.name}
+                        width={28}
+                        height={28}
+                      />
+                    </div>
+                    <h4 className="text-lg font-medium text-blue-500 mb-1">{material.name}</h4>
+                    <p className="text-xs text-gray-400">{material.desc}</p>
+                  </div>
+                </SpotlightCard>
+              ))}
             </div>
           </div>
 

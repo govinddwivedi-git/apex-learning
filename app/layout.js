@@ -13,6 +13,9 @@ export const metadata = {
   title: "Apex Learning",
   description:
     "Apex Learning: Empowering Education with AI. Your AI-powered path to the Apex of Knowledge.",
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 export default function RootLayout({ children }) {
